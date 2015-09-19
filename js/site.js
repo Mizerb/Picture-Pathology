@@ -1,3 +1,5 @@
+
+// Whenever a new photo is selected, replace the image preview
 document.getElementById("hiddenButton").onchange = function () {
     var reader = new FileReader();
 
@@ -10,7 +12,17 @@ document.getElementById("hiddenButton").onchange = function () {
     reader.readAsDataURL(this.files[0]);
 };
 
+//When the image is clcked, pretend it is a button for file selecting
 $("#image").click(function() {
 	$("input[id='hiddenButton']").click();
 });
 
+function validate (formObj) {
+	if ( formObj.image.src == "resources/images/upload.jpg") {
+		alert("Please choose a picture before submitting");
+		return false;
+	}
+	else {
+		return true;
+	}
+}
