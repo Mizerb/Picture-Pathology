@@ -1,11 +1,16 @@
-var myInput = document.getElementById('myFileInput');
+document.getElementById("hiddenButton").onchange = function () {
+    var reader = new FileReader();
 
-function sendPic() {
-    var file = myInput.files[0];
+    reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("image").src = e.target.result;
+    };
 
-    // Send file here either by adding it to a `FormData` object 
-    // and sending that via XHR, or by simply passing the file into 
-    // the `send` method of an XHR instance.
-}
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+};
 
-myInput.addEventListener('change', sendPic, false);
+$("#image").click(function() {
+	$("input[id='hiddenButton']").click();
+});
+
