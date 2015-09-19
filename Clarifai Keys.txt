@@ -1,0 +1,16 @@
+Name
+Picture Pathology
+Client Id
+WgOO1i3FeeFLUYO4_IO8A-Skg9y17sWpDCFbYsH5
+
+Client Secret
+yseOE-vmap6GS_fRzh7b9TYzljw1xoSuvhQKpG1u
+Client Type
+confidential
+
+Authorization Grant Type
+client_credentials
+
+Access Tokens
+
+R271X6TXXzf8eQuorsh9H7pdsjj94v
