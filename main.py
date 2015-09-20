@@ -9,7 +9,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 
 clarifai_api = ClarifaiCustomModel(app_id=keys.clientId, app_secret=keys.clientSecret)
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
-UPLOAD_FOLDER = '/static/'
+UPLOAD_FOLDER = 'static/'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -43,9 +43,9 @@ def about():
 def data():
 	return render_template("data.html")
 
-@app.route('/results/', methods=['GET'])
-def results():
-	return render_template("results.html")
+# @app.route('/results/', methods=['GET'])
+# def results():
+# 	return render_template("results.html")
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -58,18 +58,18 @@ def upload_file():
 			filename = secure_filename(file.filename)
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 			## Change first part if we change domain names
-			filePath = "http://ec2-52-88-123-145.us-west-2.compute.amazonaws.com/" + app.config['UPLOAD_FOLDER'] + filename
+			filePath = "http://ec2-52-88-123-145.us-west-2.compute.amazonaws.com/" + os.path.join(app.config['UPLOAD_FOLDER'], filename)
 
 
 
-			result = clarifai_api.predict(filePath, 'test4')
+			result = clarifai_api.predict(filePath, 'test4') ## melanoma
 
 			# res = json.loads(json.dumps(result))
 
 			# if str(res["status_code"]) == "OK":
 			# 	tmp = res['results'][0]['result']['tag']
 
-			return json.dumps(result)
+			return render_template("results.html", res=result['urls'][0]['score'])
 			# else:
 			# 	return str(res["status_msg"])
 
@@ -86,4 +86,4 @@ if __name__ == '__main__':
 			db_create()
 			sys.exit(0)
 
-	app.run(debug=True)
+	app.run(debug=True, host='0.0.0.0', port=80, threading=True)
