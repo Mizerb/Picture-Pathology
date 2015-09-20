@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Picture Pathology</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}" />
+    <script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
+    <link href='https://fonts.googleapis.com/css?family=Neuton' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div id="container">
+
+  <div id="header">
+  <!-- SITE LAYOUT -->
+    <div id="siteTitle">
+      <div class="row">
+        <div class="small-centered medium-centered arge-uncentered  columns">
+            <!-- <h1 class="small-only-text-center" id="logo">Picture Pathology</h1> -->
+            <h1 class="small-only-text-center" id="logo">Picture Pathology - Results</h1> 
+        </div>
+      </div>
+
+      <p id="navBar">
+      <a href="/">Get Started!</a> &emsp; <a href="/about">About</a> &emsp;  <a href="/data">Data Visualization</a>
+      </p>
+    </div>
+  </div>
+
+
+
+  <div id="content">
+  <div class="row">
+    <div class="large-12 large-centered columns">
+      <h1 class="centered">Your Results</h1>
+    </div>
+
+    <div class="large-8 large-centered columns">
+
+    <p>Based on analysis of the photos, we found that...</p>
+
+<<<<<<< HEAD
+    {% if res > .55 %}
+      <p>It matched melanoma with a {{ res * 100 }}% certainty.</p>
+=======
+    {% if res|length > 0 %}
+      <p>It matched melanoma with a {{ res[0][1] * 100 }}% certainty.</p>
+>>>>>>> 62420acebc5a2a7e5966c9c6a5adff0ec04efab4
+      <p>Next steps:</p>
+      <ul>
+        <li>Always consult your doctor. This software is not always right, and is not a substitute for proper medical care.</li>
+        <li>Wear protective clothing whenever outside. The sun could exacerbate any existing condition.</li>
+      </ul>
+    {% else %}
+
+<<<<<<< HEAD
+      <p>You don't have melanoma. Congratulations!</p>
+=======
+      <p>It didn't match any conditions. Congratulations!</p>
+>>>>>>> 62420acebc5a2a7e5966c9c6a5adff0ec04efab4
+      <p>Things to Keep in Mind:</p>
+      <ul>
+        <li>If you are still unsure, consult your doctor. He/she will be better than this software at identifying conditions.</li>
+        <li>Wear protective clothing whenever outside to keep yourself safe.</li>
+        <li>Wear sunscreen.</li>
+        <li>Avoid tanning lamps/beds.</li>
+      </ul>
+
+    {% endif %}
+    </div>
+  </div>
+  </div>
+
+
+
+  <div id="footer">
+  <!-- SITE FOOTER -->
+  <footer id="footer">
+    <div class="large-12 small-12 small-centered large-centered columns">
+      <p><a href="/about">About</a> &emsp; <a href="/data">Data Visualization</a> <br/>
+      Powered by <a href="http://www.clarifai.com">Clarifai</a> </p>
+
+    </div>
+  </footer>
+  <!-- END FOOTER -->
+  </div>
+
+</div>
+
+  <script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/site.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
+
+  <script>
+    $(document).foundation();
+  </script>
+
+</body>
+</html>

@@ -37,52 +37,22 @@
     </div>
 
     <div class="large-8 large-centered columns">
-
-    <p>Based on analysis of the photos, we found that...</p>
-
-    {% if res > .55 %}
-      <p>It matched melanoma with a {{ res * 100 }}% certainty.</p>
-      <p>Next steps:</p>
-      <ul>
-        <li>Always consult your doctor. This software is not always right, and is not a substitute for proper medical care.</li>
-        <li>Wear protective clothing whenever outside. The sun could exacerbate any existing condition.</li>
-      </ul>
-    {% else %}
-
-      <p>You don't have melanoma. Congratulations!</p>
-      <p>Things to Keep in Mind:</p>
-      <ul>
-        <li>If you are still unsure, consult your doctor. He/she will be better than this software at identifying conditions.</li>
-        <li>Wear protective clothing whenever outside to keep yourself safe.</li>
-        <li>Wear sunscreen.</li>
-        <li>Avoid tanning lamps/beds.</li>
-      </ul>
-
-    {% endif %}
+      <h1 class="centered">Your results</h1>
     </div>
   </div>
-  </div>
+
+  <!-- Similar photos? -->
+
+  <!-- "Based on analysis of X photos ..... We are X% sure this is _____" -->
+
+  <!-- Imediate care steps -->
+
+  <!-- Links to more info -->
 
 
-
-  <div id="footer">
-  <!-- SITE FOOTER -->
-  <footer id="footer">
-    <div class="large-12 small-12 small-centered large-centered columns">
-      <p><a href="/about">About</a> &emsp; <a href="/data">Data Visualization</a> <br/>
-      Powered by <a href="http://www.clarifai.com">Clarifai</a> </p>
-
-    </div>
-  </footer>
-  <!-- END FOOTER -->
-  </div>
-
-</div>
-
-  <script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
   <script src="{{ url_for('static', filename='js/site.js') }}"></script>
   <script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
-
   <script>
     $(document).foundation();
   </script>

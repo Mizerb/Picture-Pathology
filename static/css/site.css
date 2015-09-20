@@ -1,29 +1,23 @@
+html,
 body {
-	background-image: url(/static/resources/Themes/pink_rice/pink_rice.png);
-	background-repeat: repeat;
-
+  margin:0;
+  padding:0;
+  height:100%;
 }
 
-#photoUploadForm {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	border-width: 5px;
-	max-height: 900px;
-	max-width: 900px;
-	background-image: url(/static/resources/Themes/brushed/brushed.png);
+/*CONTAINER CLASS FOR ENTIRE BODY*/
+#container {
+  min-height:100%;
+  position:relative;
+	background-image: url(../resources/Themes/pink_rice/pink_rice.png);
 	background-repeat: repeat;
 }
+/*END CONTAINER*/
 
-#image {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
+/*HEADER INFORMATION*/
 #siteTitle {
 	padding-top: 20px;
-	background-color: #FF0909;
+	background-color: #DA080B;
 }
 
 #logo {
@@ -42,28 +36,52 @@ body {
 #navBar a:hover {
 	color: #3DCD3D;
 }
+/*END HEADER*/
 
-
-footer{
-	margin-top: 50px;
-	background-color: #FFA24C;
-	margin-bottom: 0;
-	bottom: 0;
-	width: 100%;
-	height: 50px;
+/*MAIN PAGE CONTENT*/
+#content {
+   padding-bottom:75px;  
 }
+
+#photoUploadForm {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border-width: 5px;
+	max-height: 900px;
+	max-width: 900px;
+	background-image: url(../resources/Themes/brushed/brushed.png);
+	background-repeat: repeat;
+}
+
+#image {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+/*END PAGE CONTENT*/
+
+/*PAGE FOOTER*/
+#footer {
+
+	background-color: #FFA24C;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:75px;   }
 footer p {
 	text-align: center;
 	padding-top: 15px;
 }
+/*END FOOTER*/
 
 
-
-
-/*red: FF0909
+/*Color scheme:
+red: FF0909
 	blue: 31919F
 	orange: FFA24C
-	green: 3DCD3D
-*/
+	green: 3DCD3D*/
+
+
 
 
