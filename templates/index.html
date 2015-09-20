@@ -22,7 +22,7 @@
       </div>
 
       <p id="navBar">
-      <a href="index.html">Get Started!</a> &emsp; <a href="about.html">About</a> &emsp;  <a href="data.html">Data Visulaization</a>
+      <a href="/index">Get Started!</a> &emsp; <a href="/about">About</a> &emsp;  <a href="/data">Data Visulaization</a>
       </p>
     </div>
   <!-- SITE LAYOUT END -->
@@ -42,14 +42,14 @@
   <div class="row" id="dropzoneWrapper">
     <div class="large-12 large-centered columns">
       <fieldset id="photoUploadForm">
-        <form id="form" action="#" method="post" onsubmit="return validate(this)">
+        <form id="form" enctype=multipart/form-data action="/" method="post" >
           
           <!-- Hidden button that will activate on image click -->
-          <input type="file" accept="image/*" id="hiddenButton" style="display: none;" />
+          <input type="file" name="file" accept="image/*" id="hiddenButton" style="display: none;" />
 
           <!-- Image to upload -->
           <div class="row">
-            <img id="image" src="resources/images/upload.jpg" alt="CLICK HERE">
+            <img id="image" src="/static/resources/images/upload.jpg" alt="CLICK HERE">
           </div>
 
           <!-- Submit button -->
@@ -70,6 +70,7 @@
   <!-- SITE FOOTER -->
   <footer id="footer">
     <div class="large-12 small-12 small-centered large-centered columns">
+      
       <p><a href="about.html">About</a> &emsp; <a href="data.html">Data Visulaization</a> <br/>
       Powered by <a href="http://www.clarifai.com">Clarifai</a> </p>
     </div>
