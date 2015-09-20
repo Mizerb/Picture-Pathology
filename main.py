@@ -4,10 +4,10 @@ import json
 import sys
 from flask import Flask, request, redirect, url_for, render_template
 from werkzeug import secure_filename
-from clarifai_basic import ClarifaiCustomModel
+from clarifai.client import ClarifaiApi
 from flask.ext.sqlalchemy import SQLAlchemy
 
-clarifai_api = ClarifaiCustomModel(app_id=keys.clientId, app_secret=keys.clientSecret)
+clarifai_api = ClarifaiApi(app_id=keys.clientId, app_secret=keys.clientSecret)
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 UPLOAD_FOLDER = '/static/'
 
@@ -21,16 +21,16 @@ def allowed_file(filename):
 def guess_disease(result):
 	'''Given the result from Clarifai, scan the results for possible matches.'''
 	## Data will be from res['results'][0]['result']['tag'], so we can just do result['classes'] and result['probs']
-	possibleDiseases = ['melanoma'] ## Can be extended later
+	# possibleDiseases = ['dieseas'] ## Can be extended later
 
 	## List of tuples containing name and probability of disease.
 	diseaseProbability = []
 	
-	for disease in possibleDiseases:
-		if disease in result['classes']:
-			index = result['classes'].index(disease)
-			currentProbability = result['probs'][index]
-			diseaseProbability.append((disease, float(currentProbability)))
+	# for disease in possibleDiseases:
+	if 'disease' in result['classes']:
+		index = result['classes'].index('disease')
+		currentProbability = result['probs'][index]
+		diseaseProbability.append(('melanoma', float(currentProbability)))
 
 	diseaseProbability = sorted(diseaseProbability, key=lambda x: x[1], reverse=True)
 	return diseaseProbability
@@ -44,34 +44,22 @@ def data():
 	return render_template("data.html")
 
 @app.route('/results/', methods=['GET'])
-def results():
-	return render_template("results.html")
+def results(d):
+
+	return render_template("results.html", res=d)
 
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
 	if request.method == 'POST':
-		print ":("
 		print request.files
 		file = request.files['file']
 		if file and allowed_file(file.filename):
-			filename = secure_filename(file.filename)
-			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-			## Change first part if we change domain names
-			filePath = "http://ec2-52-88-123-145.us-west-2.compute.amazonaws.com/" + app.config['UPLOAD_FOLDER'] + filename
 
+			result = clarifai_api.tag_images(file)
 
-
-			result = clarifai_api.predict(filePath, 'test4')
-
-			# res = json.loads(json.dumps(result))
-
-			# if str(res["status_code"]) == "OK":
-			# 	tmp = res['results'][0]['result']['tag']
-
-			return json.dumps(result)
-			# else:
-			# 	return str(res["status_msg"])
+			d = guess_disease(result['results'][0]['result']['tag'])
+			return results(d)
 
 	return render_template('index.html')
 
