@@ -1,5 +1,5 @@
 keys.py
-./*.pyc
-./*.jpg
-./*.jpeg
-./*.png
+*.pyc
+/*.jpg
+/*.jpeg
+/*.png

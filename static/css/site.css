@@ -1,0 +1,83 @@
+html,
+body {
+  margin:0;
+  padding:0;
+  height:100%;
+}
+
+/*CONTAINER CLASS FOR ENTIRE BODY*/
+#container {
+  min-height:100%;
+  position:relative;
+	background-image: url(../resources/Themes/pink_rice/pink_rice.png);
+	background-repeat: repeat;
+}
+/*END CONTAINER*/
+
+/*HEADER INFORMATION*/
+#siteTitle {
+	padding-top: 20px;
+	background-color: #FF0909;
+}
+
+#navBar {
+	text-align: center;
+	font-style: italic;
+	background-color: #31919F;
+}
+
+#navBar a {
+	color: white;
+}
+#navBar a:hover {
+	color: #3DCD3D;
+}
+/*END HEADER*/
+
+/*MAIN PAGE CONTENT*/
+#content {
+   padding-bottom:60px;  
+}
+
+#photoUploadForm {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border-width: 5px;
+	max-height: 900px;
+	max-width: 900px;
+	background-image: url(../resources/Themes/brushed/brushed.png);
+	background-repeat: repeat;
+}
+
+#image {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+/*END PAGE CONTENT*/
+
+/*PAGE FOOTER*/
+#footer {
+
+	background-color: #FFA24C;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:60px;   }
+footer p {
+	text-align: center;
+	padding-top: 15px;
+}
+/*END FOOTER*/
+
+
+/*Color scheme:
+red: FF0909
+	blue: 31919F
+	orange: FFA24C
+	green: 3DCD3D*/
+
+
+
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Picture Pathology - Data</title>
+  	<meta charset="utf-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  	<link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}" />
+    <script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
+</head>
+<body>
+
+<div id="container">
+  
+  <div id="header">
+  <!-- SITE LAYOUT -->
+    <div id="siteTitle">
+      <div class="row">
+        <div class="small-centered medium-centered arge-uncentered  columns">
+            <h1 class="small-only-text-center" id="logo">Picture Pathology</h1> 
+        </div>
+      </div>
+
+      <p id="navBar">
+      <a href="index.html">Get Started!</a> &emsp; <a href="about.html">About</a> &emsp;  <a href="data.html">Data Visulaization</a>
+      </p>
+    </div>
+  <!-- SITE LAYOUT END -->
+  </div>
+
+  <div id="content">
+  <!-- Visualization of data -->
+
+  <!-- Number of diseases caught -->
+  <!-- Number of negatives/doctors trips saved  Maybe something about wait times-->
+  <!-- Map of world where diseases are found -->
+  <!-- Map of user locations -->
+  <!-- Number of people affected by diseases, by disease -->
+
+  </div>
+  
+
+  <div id="footer">
+  <!-- SITE FOOTER -->
+  <footer>
+    <div class="large-12 small-12 small-centered large-centered columns">
+      <p><a href="about.html">About</a> &emsp; <a href="data.html">Data Visulaization</a> </p>
+    </div>
+  </footer>
+  <!-- END FOOTER -->
+  </div>
+  
+</div>
+	<script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/site.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
+  <script>
+    $(document).foundation();
+  </script>
+
+</body>
+</html>

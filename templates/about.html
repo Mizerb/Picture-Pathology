@@ -4,19 +4,30 @@
 	<title>Picture Pathology - About</title>
   	<meta charset="utf-8" />
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  	<link rel="stylesheet" href="css/foundation.css" />
-  	<link rel="stylesheet" href="css/site.css" />
-  	<script src="js/vendor/modernizr.js"></script>
+  	<link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}" />
+    <script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
 </head>
 <body>
+<div id="container">
 
-  <!-- Site Title -->
-  <div class="row">
-    <div class="large-8 large-centered columns">
-      <h1 class="centered">About Picture Pathology</h1>
+  <div id="header">
+  <!-- SITE LAYOUT -->
+    <div id="siteTitle">
+      <div class="row">
+        <div class="small-centered medium-centered arge-uncentered  columns">
+            <h1 class="small-only-text-center" id="logo">Picture Pathology</h1> 
+        </div>
+      </div>
+
+      <p id="navBar">
+      <a href="index.html">Get Started!</a> &emsp; <a href="about.html">About</a> &emsp;  <a href="data.html">Data Visulaization</a>
+      </p>
     </div>
+  <!-- SITE LAYOUT END -->
   </div>
 
+  <div id="content">
   <div class="row">
     <div class="large-6 left columns">
       <h2>Using machine learning to identify diseases</h2>
@@ -38,12 +49,21 @@
       <p>To begin using picture pathology, simply go to the uploads page, take a photo of the affected area, and send it to our data server for analysis. Within seconds, we will respond with our best guess at the condition (if one is present) and give you recommendtions on how to preceed. It's that easy.</p>
     </div>
   </div>
+  </div>
 
-
-
-	<script src="js/vendor/jquery.js"></script>
-  <script src="js/site.js"></script>
-  <script src="js/foundation.min.js"></script>
+  <div id="footer">
+  <!-- SITE FOOTER -->
+  <footer>
+    <div class="large-12 small-12 small-centered large-centered columns">
+      <p><a href="about.html">About</a> &emsp; <a href="data.html">Data Visulaization</a> </p>
+    </div>
+  </footer>
+  <!-- END FOOTER -->
+  </div>
+</div>
+	<script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/site.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
   <script>
     $(document).foundation();
   </script>

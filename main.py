@@ -2,107 +2,78 @@ import os
 import keys
 import json
 import sys
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, render_template
 from werkzeug import secure_filename
-from clarifai.client import ClarifaiApi
+from clarifai_basic import ClarifaiCustomModel
 from flask.ext.sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
-
-clarifai_api = ClarifaiApi(app_id=keys.clientId, app_secret=keys.clientSecret)
+clarifai_api = ClarifaiCustomModel(app_id=keys.clientId, app_secret=keys.clientSecret)
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+UPLOAD_FOLDER = '/static/'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = keys.DB_LOCATION
-db = SQLAlchemy(app)
-
-
-class ImageClass(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	value = db.Column(db.String(128))
-	image_data_id = db.Column(db.Integer, db.ForeignKey('image_data.id'))
-	def __init__(self, val):
-		self.value = val
-
-class ImageProb(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	value = db.Column(db.String(127))
-	image_data_id = db.Column(db.Integer, db.ForeignKey('image_data.id'))
-	def __init__(self, val):
-		self.value = val
-		
-class ImageData(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    
-    classes =  db.relationship('ImageClass', backref='image_data',
-                                lazy='dynamic')
-    probs =  db.relationship('ImageProb', backref='image_data',
-                                lazy='dynamic')    
-    docIdStr = db.Column(db.String(128))
-
-    def __init__(self, docIdStr):
-        self.docIdStr = docIdStr
-
-    def __repr__(self):
-        return '<ImageData classes=' + ' '.join([item.value for item in self.classes]) + ' probs=' + ' '.join([item.value for item in self.probs]) + ' docIdStr=' + self.docIdStr + '>' 
-
-def db_create():
-    ## Create database from models
-    print "Creating database"
-    db.create_all()
-
-def db_recreate():
-    ## Drop all tables and then recreate.
-    print "Recreating database"
-    db.reflect()
-    db.drop_all()
-    db.create_all()
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
+def guess_disease(result):
+	'''Given the result from Clarifai, scan the results for possible matches.'''
+	## Data will be from res['results'][0]['result']['tag'], so we can just do result['classes'] and result['probs']
+	possibleDiseases = ['melanoma'] ## Can be extended later
+
+	## List of tuples containing name and probability of disease.
+	diseaseProbability = []
+	
+	for disease in possibleDiseases:
+		if disease in result['classes']:
+			index = result['classes'].index(disease)
+			currentProbability = result['probs'][index]
+			diseaseProbability.append((disease, float(currentProbability)))
+
+	diseaseProbability = sorted(diseaseProbability, key=lambda x: x[1], reverse=True)
+	return diseaseProbability
+
+@app.route('/about/', methods=['GET'])
+def about():
+	return render_template("about.html")
+
+@app.route('/data/', methods=['GET'])
+def data():
+	return render_template("data.html")
+
+@app.route('/results/', methods=['GET'])
+def results():
+	return render_template("results.html")
+
+
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
-
 	if request.method == 'POST':
+		print ":("
+		print request.files
 		file = request.files['file']
 		if file and allowed_file(file.filename):
+			filename = secure_filename(file.filename)
+			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+			## Change first part if we change domain names
+			filePath = "http://ec2-52-88-123-145.us-west-2.compute.amazonaws.com/" + app.config['UPLOAD_FOLDER'] + filename
 
-			result = clarifai_api.tag_images(file)
-
-			res = json.loads(json.dumps(result))
 
 
-			if str(res["status_code"]) == "OK":
-				tmp = res['results'][0]['result']['tag']
-				imageData = ImageData(res['results'][0]['docid_str'])
+			result = clarifai_api.predict(filePath, 'test4')
 
-				db.session.add(imageData)
-				db.session.commit()
+			# res = json.loads(json.dumps(result))
 
-				for item in map(str, tmp['classes']):
-					x = ImageClass(item)
-					imageData.classes.append(x)
+			# if str(res["status_code"]) == "OK":
+			# 	tmp = res['results'][0]['result']['tag']
 
-				for item in tmp['probs']:
-					x = ImageProb(str(item))
-					imageData.probs.append(x)
+			return json.dumps(result)
+			# else:
+			# 	return str(res["status_msg"])
 
-				db.session.add(imageData)
-				db.session.commit()
-				return json.dumps(result)
-			else:
-				return str(res["status_msg"])
-
-	return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form action="" method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
-    </form>
-    '''
+	return render_template('index.html')
 
 
 if __name__ == '__main__':
