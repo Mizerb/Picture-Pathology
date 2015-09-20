@@ -20,6 +20,9 @@ body {
 	background-color: #DA080B;
 }
 
+#logo {
+	font-family: 'Neuton', serif;
+
 #navBar {
 	text-align: center;
 	font-style: italic;
