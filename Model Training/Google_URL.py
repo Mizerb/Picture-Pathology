@@ -5,9 +5,10 @@ from urllib import FancyURLopener
 import urllib2
 import simplejson
 
+
 # Define search term
-searchTerm = "normal flat mole"#str(sys.argv[1])
-outfile = "test.txt" #str(sys.argv[2])
+searchTerm = str(sys.argv[1])
+outfile = str(sys.argv[2])
 
 target = open(outfile,'w')
 
