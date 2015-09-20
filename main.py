@@ -68,7 +68,7 @@ def upload_file():
 			# if str(res["status_code"]) == "OK":
 			# 	tmp = res['results'][0]['result']['tag']
 
-			return render_template("results.html", res=result['urls'][0]['score'])
+			return render_template("results.html", res=result['urls'][0]['score'] < .55, res1=result['urls'][0]['score'])
 			# else:
 			# 	return str(res["status_msg"])
 

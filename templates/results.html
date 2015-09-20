@@ -40,8 +40,8 @@
 
     <p>Based on analysis of the photos, we found that...</p>
 
-    {% if res is lessthan 0.55 %}
-      <p>It matched melanoma with a {{ res * 100 }}% certainty.</p>
+    {% if res %}
+      <p>It matched melanoma with a {{ res1 * 100 }}% certainty.</p>
       <p>Next steps:</p>
       <ul>
         <li>Always consult your doctor. This software is not always right, and is not a substitute for proper medical care.</li>
