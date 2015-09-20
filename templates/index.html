@@ -42,10 +42,10 @@
   <div class="row" id="dropzoneWrapper">
     <div class="large-12 large-centered columns">
       <fieldset id="photoUploadForm">
-        <form id="form" action="#" method="post" onsubmit="return validate(this)">
+        <form id="form" enctype=multipart/form-data action="/" method="post" >
           
           <!-- Hidden button that will activate on image click -->
-          <input type="file" accept="image/*" id="hiddenButton" style="display: none;" />
+          <input type="file" name="file" accept="image/*" id="hiddenButton" style="display: none;" />
 
           <!-- Image to upload -->
           <div class="row">
