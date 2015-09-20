@@ -17,12 +17,16 @@ $("#image").click(function() {
 	$("input[id='hiddenButton']").click();
 });
 
+
+
+//MAKE SURE PHOTO IS ATTACHED
 function validate (formObj) {
-	if ( formObj.image.src == "resources/images/upload.jpg") {
+	if ( $("#image").attr("src") == "resources/images/upload.jpg") {
 		alert("Please choose a picture before submitting");
 		return false;
 	}
 	else {
+		alert("Form validated");
 		return true;
 	}
 }

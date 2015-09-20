@@ -1,5 +1,7 @@
-.centered {
-	text-align: center;
+body {
+	background-image: url(../resources/Themes/pink_rice/pink_rice.png);
+	background-repeat: repeat;
+
 }
 
 #photoUploadForm {
@@ -9,37 +11,38 @@
 	border-width: 5px;
 	max-height: 900px;
 	max-width: 900px;
-	background-color: lightgray;
+	background-image: url(../resources/Themes/brushed/brushed.png);
+	background-repeat: repeat;
 }
 
 #image {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	min-height: 300px;
-	min-width: 300px;
 }
 
 #siteTitle {
 	padding-top: 20px;
-	padding-bottom: 20px;
-	background-color: red;
-	border-bottom: 2px;
-	border-top: 0px;
-	border-left: 0px;
-	border-right: 0px;
-	border-style: solid;
+	background-color: #FF0909;
 }
 
-#siteTitle h1 {
+#navBar {
 	text-align: center;
-	font-size: 3.5em;
+	font-style: italic;
+	background-color: #31919F;
+}
+
+#navBar a {
+	color: white;
+}
+#navBar a:hover {
+	color: #3DCD3D;
 }
 
 
 footer{
 	margin-top: 50px;
-	background-color: red;
+	background-color: #FFA24C;
 	margin-bottom: 0;
 	bottom: 0;
 	width: 100%;
@@ -49,9 +52,14 @@ footer p {
 	text-align: center;
 	padding-top: 15px;
 }
-nav p {
-	text-align: center;
-	font-size: .75em;
-	margin-bottom: 0px;
-	font-style: italic;
-}
+
+
+
+
+/*red: FF0909
+	blue: 31919F
+	orange: FFA24C
+	green: 3DCD3D
+*/
+
+
