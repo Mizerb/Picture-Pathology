@@ -9,14 +9,24 @@
   	<script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
 </head>
 <body>
+<div id="container">
+  <div id="header">
+  <!-- SITE LAYOUT -->
+    <div id="siteTitle">
+      <div class="row">
+        <div class="small-centered medium-centered arge-uncentered  columns">
+            <h1 class="small-only-text-center" id="logo">Picture Pathology</h1> 
+        </div>
+      </div>
 
-  <!-- Site Title -->
-  <div class="row">
-    <div class="large-8 large-centered columns">
-      <h1 class="centered">Your results</h1>
+      <p id="navBar">
+      <a href="index.html">Get Started!</a> &emsp; <a href="about.html">About</a> &emsp;  <a href="data.html">Data Visulaization</a>
+      </p>
     </div>
+  <!-- SITE LAYOUT END -->
   </div>
 
+  <div id="content">
   <!-- Similar photos? -->
 
   <!-- "Based on analysis of X photos ..... We are X% sure this is _____" -->
@@ -24,6 +34,21 @@
   <!-- Imediate care steps -->
 
   <!-- Links to more info -->
+
+  </div>
+
+
+  <div id="footer">
+  <!-- SITE FOOTER -->
+  <footer id="footer">
+    <div class="large-12 small-12 small-centered large-centered columns">
+      <p><a href="about.html">About</a> &emsp; <a href="data.html">Data Visulaization</a> <br/>
+      Powered by <a href="http://www.clarifai.com">Clarifai</a> </p>
+    </div>
+  </footer>
+  <!-- END FOOTER -->
+  </div>
+</div>
 
 
 	<script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
