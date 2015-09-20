@@ -78,6 +78,17 @@ def guess_disease(result):
 	diseaseProbability = sorted(diseaseProbability, key=lambda x: x[1], reverse=True)
 	return diseaseProbability
 
+@app.route('/about/', methods=['GET'])
+def about():
+	return render_template("about.html")
+
+@app.route('/data/', methods=['GET'])
+def data():
+	return render_template("data.html")
+
+@app.route('/results/', methods=['GET'])
+def results():
+	return render_template("results.html")
 
 
 @app.route('/', methods=['GET', 'POST'])
