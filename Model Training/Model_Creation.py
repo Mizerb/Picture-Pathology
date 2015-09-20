@@ -17,23 +17,34 @@ Negative_File = str(sys.argv[3])
 
 
 
-
+print "Start"
 # instantiate clarifai client
 clarifai = ClarifaiCustomModel()
 
 #[line.strip() for line in open("C:/name/MyDocuments/numbers", 'r')]
 
 # add the positive example images to the model
+print "Positive"
 for positive_example in [ line.strip() for line in (open(Positive_File)).readlines() ]:
-  clarifai.positive(positive_example, Model_name)
+  try:
+    clarifai.positive(positive_example, Model_name)
+  except:
+    print "oops"
+    print str(positive_example)
 
 # negatives are not required but will help if you want to discriminate between similar concepts
 
-
+print "Negative Examples"
 # add the negative example images to the model
 for negative_example in [ line.strip() for line in (open(Negative_File)).readlines() ]:
-  clarifai.negative(negative_example, Model_name)
+  try:
+    clarifai.negative(negative_example, Model_name)
+  except:
+    print "oops"
+    print str(negative_example)
 
+  
+print "Training"
 # train the model
 clarifai.train(Model_name)
 
