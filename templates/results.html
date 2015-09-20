@@ -40,8 +40,7 @@
 
     <p>Based on analysis of the photos, we found that...</p>
 
-    {{ x = 0 }}
-    {% if res > x %}
+    {% if res is lessthan 0.55 %}
       <p>It matched melanoma with a {{ res * 100 }}% certainty.</p>
       <p>Next steps:</p>
       <ul>
