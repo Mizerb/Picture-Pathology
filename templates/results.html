@@ -4,9 +4,9 @@
 	<title>Picture Pathology - Results</title>
   	<meta charset="utf-8" />
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  	<link rel="stylesheet" href="css/foundation.css" />
-  	<link rel="stylesheet" href="css/site.css" />
-  	<script src="js/vendor/modernizr.js"></script>
+  	<link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}" />
+  	<script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
 </head>
 <body>
 
@@ -26,9 +26,9 @@
   <!-- Links to more info -->
 
 
-	<script src="js/vendor/jquery.js"></script>
-  <script src="js/site.js"></script>
-  <script src="js/foundation.min.js"></script>
+	<script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/site.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
   <script>
     $(document).foundation();
   </script>

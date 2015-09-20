@@ -1,5 +1,5 @@
 body {
-	background-image: url(../resources/Themes/pink_rice/pink_rice.png);
+	background-image: url(/static/resources/Themes/pink_rice/pink_rice.png);
 	background-repeat: repeat;
 
 }
@@ -11,7 +11,7 @@ body {
 	border-width: 5px;
 	max-height: 900px;
 	max-width: 900px;
-	background-image: url(../resources/Themes/brushed/brushed.png);
+	background-image: url(/static/resources/Themes/brushed/brushed.png);
 	background-repeat: repeat;
 }
 

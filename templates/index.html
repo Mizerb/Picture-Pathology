@@ -4,9 +4,9 @@
 	<title>Picture Pathology</title>
   	<meta charset="utf-8" />
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  	<link rel="stylesheet" href="css/foundation.css" />
-  	<link rel="stylesheet" href="css/site.css" />
-  	<script src="js/vendor/modernizr.js"></script>
+  	<link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}" />
+    <script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
     <link href='https://fonts.googleapis.com/css?family=Neuton' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -36,14 +36,14 @@
 	<div class="row" id="dropzoneWrapper">
     <div class="large-12 large-centered columns">
       <fieldset id="photoUploadForm">
-        <form id="form" action="#" method="post" onsubmit="return validate(this)">
+        <form id="form" action="/" method=post enctype=multipart/form-data>
           
           <!-- Hidden button that will activate on image click -->
-          <input type="file" accept="image/*" id="hiddenButton" style="display: none;" />
+          <input type="file" name="file" accept="image/*" id="hiddenButton" style="display: none;" />
 
           <!-- Image to upload -->
           <div class="row">
-            <img id="image" src="resources/images/upload.jpg" alt="CLICK HERE">
+            <img id="image" src="/static/resources/images/upload.jpg" alt="CLICK HERE">
           </div>
 
           <!-- Submit button -->
@@ -64,9 +64,10 @@
     </div>
   </footer>
 
-	<script src="js/vendor/jquery.js"></script>
-  <script src="js/site.js"></script>
-  <script src="js/foundation.min.js"></script>
+  <script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/site.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
+
   <script>
     $(document).foundation();
   </script>

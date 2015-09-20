@@ -2,7 +2,7 @@ import os
 import keys
 import json
 import sys
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, render_template
 from werkzeug import secure_filename
 from clarifai.client import ClarifaiApi
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -61,17 +61,36 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
+def guess_disease(result):
+	'''Given the result from Clarifai, scan the results for possible matches.'''
+	## Data will be from res['results'][0]['result']['tag'], so we can just do result['classes'] and result['probs']
+	possibleDiseases = ['melanoma'] ## Can be extended later
+
+	## List of tuples containing name and probability of disease.
+	diseaseProbability = []
+	
+	for disease in possibleDiseases:
+		if disease in result['classes']:
+			index = result['classes'].index(disease)
+			currentProbability = result['probs'][index]
+			diseaseProbability.append((disease, float(currentProbability)))
+
+	diseaseProbability = sorted(diseaseProbability, key=lambda x: x[1], reverse=True)
+	return diseaseProbability
+
+
+
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
-
 	if request.method == 'POST':
+		print ":("
+		print request.files
 		file = request.files['file']
 		if file and allowed_file(file.filename):
 
 			result = clarifai_api.tag_images(file)
 
 			res = json.loads(json.dumps(result))
-
 
 			if str(res["status_code"]) == "OK":
 				tmp = res['results'][0]['result']['tag']
@@ -90,19 +109,15 @@ def upload_file():
 
 				db.session.add(imageData)
 				db.session.commit()
+
+				print tmp
+				print guess_disease(tmp)
+
 				return json.dumps(result)
 			else:
 				return str(res["status_msg"])
 
-	return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form action="" method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
-    </form>
-    '''
+	return render_template('index.html')
 
 
 if __name__ == '__main__':
